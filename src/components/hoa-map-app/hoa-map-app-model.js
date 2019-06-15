@@ -51,18 +51,14 @@ export function getHouseById(lot) {
     `;
 
     const client = new ApolloClient({
-        link: createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }),
+        link: createHttpLink({ uri: `${URI}/graphql` }),
         cache: new InMemoryCache()
     });
 
     return client.query({
         query: MY_QUERY,
         variables: {lot},
-        context: {
-            headers: {
-                special: "Special header value"
-            }
-        }
+        fetchOptions: { mode: 'cors' }
     })
     .then(response => response);
 }
@@ -104,18 +100,14 @@ export function getHouseByAddress(number) {
     `;
 
     const client = new ApolloClient({
-        link: createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }),
+        link: createHttpLink({ uri: `${URI}/graphql` }),
         cache: new InMemoryCache()
     });
 
     return client.query({
         query: MY_QUERY,
         variables: { number },
-        context: {
-            headers: {
-                special: "Special header value"
-            }
-        }
+        fetchOptions: { mode: 'cors' }
     })
     .then(response => response);
 }
@@ -160,14 +152,15 @@ export function updateHouse(houseInput) {
     `;
 
     const client = new ApolloClient({
-        link: ApolloLink.from([ errorLink, createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }) ]),
+        link: ApolloLink.from([ errorLink, createHttpLink({ uri: `${URI}/graphql` }) ]),
         cache: new InMemoryCache()
     });
 
     return client
         .mutate({
             mutation: MY_MUTATION,
-            variables: { houseInput: omitDeep(houseInput, '__typename') }
+            variables: { houseInput: omitDeep(houseInput, '__typename') },
+            fetchOptions: { mode: 'cors' }
         })
         .then(response => response);
 }
