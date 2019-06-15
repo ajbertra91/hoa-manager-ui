@@ -1,5 +1,5 @@
 {
-  "name": "hoa-map",
+  "name": "hoa-manager-ui",
   "repository": {
     "type": "git",
     "url": ""
@@ -34,8 +34,8 @@
     "svg.js": "^2.7.1"
   },
   "scripts": {
-    "build": "rollup -c NODE_ENV=production",
-    "watch": "rollup -c -w NODE_ENV=development",
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve public"
   },
