@@ -1,0 +1,120 @@
+hoa-form {
+    display: block;
+}
+
+hoa-form .hoa-form__row {
+    line-height: 1.6em;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+hoa-form .hoa-form__row .hoa-form__label,
+hoa-form .hoa-form__row label ,
+hoa-form .hoa-form__row .hoa-form__fees-title {
+    font-weight: 600;
+}
+
+hoa-form .hoa-form__row .hoa-form__value {
+    color: #000;
+}
+
+hoa-form form .hoa-form__row.hoa-form__name {
+    margin-top: 20px;
+}
+hoa-form label, hoa-form input[type="text"] {
+    transition: all 0.2s;
+    touch-action: manipulation;
+}
+hoa-form .hoa-form__row:not(.hoa-form__fees) label {
+    position: absolute;
+    top: 5px;
+    left: 22px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #085f63;
+}
+hoa-form .hoa-form__row input[type="text"] {
+    padding: 26px 50px 4px 20px;
+    font-size: 24px;
+    border: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    width: calc(100% - 70px);
+    font-family: 'Montserrat', sans-serif;
+    color: #085f63;
+}
+hoa-form .hoa-form__row input[type="text"]:focus {
+    outline: 0;
+}
+hoa-form .hoa-form__row input[type="text"]:placeholder-shown + label {
+  cursor: text;
+  max-width: 66.66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate3d(0, 31px, 0) scale(1.5);
+}
+hoa-form .hoa-form__row input[type="text"]::placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+hoa-form .hoa-form__row input[type="text"]:focus::placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+hoa-form .hoa-form__row input[type="text"]:not(:placeholder-shown) + label,
+hoa-form .hoa-form__row input[type="text"]:focus + label {
+  transform: translate3d(0, 0, 0) scale(1);
+  cursor: pointer;
+}
+
+hoa-form .hoa-form__row input[type="text"]:active + label,
+hoa-form .hoa-form__row input[type="text"]:focus + label {
+    transform: scale(1) translate3d(0, 0, 0);
+}
+
+hoa-form .hoa-form__row .hoa-search--action {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+hoa-form .hoa-form__row .hoa-search--action button {
+    border: 0;
+    background: #ccc;
+    height: 59px;
+    width: 44px;
+}
+
+hoa-form .hoa-form__row.hoa-form__fees label {
+    display: inline-block;
+}
+hoa-form .hoa-form__row input[type="radio"] {
+    height: 20px;
+    display: inline-block;
+}
+
+hoa-form .hoa-form__action {
+    margin-top: 20px;
+}
+
+hoa-form .hoa-form__action button {
+    background: #32dbc6;
+    color: #085f63;
+    border: 1px solid #085f63;;
+    height: 40px;
+    font-size: 20px;
+    padding: 5px 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+hoa-form .hoa-form__action button:hover {
+    background: #4ba5c0;
+    border: #214853;
+    color: white;
+    cursor: pointer;
+}
+hoa-form .hoa-form__action button:active {
+    transform: translate3d(0,3px,0)
+}

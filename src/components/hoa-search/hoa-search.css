@@ -1,0 +1,156 @@
+:root {
+    --inactive: #aaa;
+    --active: tomato;
+    --speed: 1.2s;
+    --size: 50px;
+    --unit: var(--size) / 16;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner-double-section-out {
+    position: relative;
+    display: block;
+    float: left;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: var(--unit) solid var(--inactive);
+    animation: spinner var(--speed) linear infinite;
+}
+.spinner-double-section-out:before,
+.spinner-double-section-out:after {
+    content: '';
+    position: absolute;
+    top: -var(--unit);
+    left: -var(--unit);
+    display: block;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: var(--unit) solid transparent;
+    border-top-color: var(--active);
+}
+.spinner-double-section-out:after {
+    border-top-color: transparent;
+    border-bottom-color: var(--active);
+    display: none;
+}
+
+.spinner-double-section-out:before,
+.spinner-double-section-out:after {
+    top: calc(var(--unit)*-2);
+    left: calc(var(--unit)*-2);
+    width: calc(var(--size) + calc(var(--unit)*2));
+    height: calc(var(--size) + calc(var(--unit)*2));
+}
+
+
+
+
+hoa-search {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+hoa-search #hoa-search-input-container {
+    position: relative;
+    background-color: #ebefd0;
+}
+
+hoa-search input {
+    background-color: transparent;
+}
+
+hoa-search label, hoa-search input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+hoa-search label {
+    position: absolute;
+    top: 5px;
+    left: 22px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #085f63;
+}
+
+hoa-search input {
+    padding: 26px 50px 4px 20px;
+    font-size: 24px;
+    border: 0;
+    margin: 0;
+    border-bottom: 1px solid #085f63;
+    color: #085f63;
+    width: calc(100% - 70px);
+}
+
+hoa-search input:focus {
+    outline: 0;
+}
+
+input:placeholder-shown + label {
+  cursor: text;
+  max-width: 66.66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate3d(0, 31px, 0) scale(1.5);
+}
+
+/**
+* By default, the placeholder should be transparent. Also, it should
+* inherit the transition.
+*/
+hoa-search input::placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+
+/**
+* Show the placeholder when the input is focused.
+*/
+hoa-search input:focus::placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when
+* there's something in the input at all.
+*/
+hoa-search input:not(:placeholder-shown) + label,
+hoa-search input:focus + label {
+  transform: translate3d(0, 0, 0) scale(1);
+  cursor: pointer;
+}
+
+hoa-search input:active + label,
+hoa-search input:focus + label {
+    transform: scale(1) translate3d(0, 0, 0);
+}
+
+hoa-search .hoa-search--action {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+hoa-search .hoa-search--action button {
+    border: 0;
+    background: #085f63;
+    height: 59px;
+    width: 44px;
+    border-bottom: 1px solid #085f63;
+    border-left: 1px solid #085f63;
+    color: white;
+}
