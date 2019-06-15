@@ -5,6 +5,14 @@ import { createHttpLink } from 'apollo-link-http';
 import gql from 'graphql-tag';
 import omitDeep from 'omit-deep-lodash';
 
+const hostname = window.location.hostname;
+let URI = '';
+if (hostname === 'localhost') {
+    URI = 'http://localhost:4000'
+} else {
+    URI = 'https://ajb-hoa-manager-services.herokuapp.com'
+}
+
 export function getHouseById(lot) {
     console.log('lot: ', lot)
     const MY_QUERY = gql`
@@ -42,15 +50,8 @@ export function getHouseById(lot) {
         }
     `;
 
-    const hostname = window.location.hostname;
-    let uri = '';
-    if (hostname === 'localhost') {
-        uri = 'http://localhost:4000'
-    } else {
-        uri = 'https://ajb-hoa-manager-services.herokuapp.com'
-    }
     const client = new ApolloClient({
-        link: createHttpLink({uri: `${uri}/graphql`}),
+        link: createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }),
         cache: new InMemoryCache()
     });
 
@@ -102,15 +103,8 @@ export function getHouseByAddress(number) {
         }
     `;
 
-    const hostname = window.location.hostname;
-    let uri = '';
-    if (hostname === 'localhost') {
-        uri = 'http://localhost:4000'
-    } else {
-        uri = 'https://ajb-trivia-game-services.herokuapp.com'
-    }
     const client = new ApolloClient({
-        link: createHttpLink({ uri: `${uri}/graphql` }),
+        link: createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }),
         cache: new InMemoryCache()
     });
 
@@ -165,16 +159,8 @@ export function updateHouse(houseInput) {
         }
     `;
 
-    const hostname = window.location.hostname;
-    let uri = '';
-    if (hostname === 'localhost') {
-        uri = 'http://localhost:4000'
-    } else {
-        uri = 'https://ajb-trivia-game-services.herokuapp.com'
-    }
     const client = new ApolloClient({
-        // link: createHttpLink({ uri: `${uri}/graphql` }),
-        link: ApolloLink.from([ errorLink, createHttpLink({ uri: `${uri}/graphql`, fetchOptions: {mode: 'no-cors'} }) ]),
+        link: ApolloLink.from([ errorLink, createHttpLink({ uri: `${URI}/graphql`, fetchOptions: {mode: 'no-cors'} }) ]),
         cache: new InMemoryCache()
     });
 
