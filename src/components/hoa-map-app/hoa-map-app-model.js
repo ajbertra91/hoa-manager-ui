@@ -174,7 +174,7 @@ export function updateHouse(houseInput) {
     }
     const client = new ApolloClient({
         // link: createHttpLink({ uri: `${uri}/graphql` }),
-        link: ApolloLink.from([errorLink, createHttpLink({ uri: `${uri}/graphql` })]),
+        link: ApolloLink.from([ errorLink, createHttpLink({ uri: `${uri}/graphql`, fetchOptions: {mode: 'no-cors'} }) ]),
         cache: new InMemoryCache()
     });
 
