@@ -47,7 +47,7 @@ export function getHouseById(lot) {
     if (hostname === 'localhost') {
         uri = 'http://localhost:4000'
     } else {
-        uri = 'https://ajb-hoa-manager-services.herokuapp.com/'
+        uri = 'https://ajb-hoa-manager-services.herokuapp.com'
     }
     const client = new ApolloClient({
         link: createHttpLink({uri: `${uri}/graphql`}),
